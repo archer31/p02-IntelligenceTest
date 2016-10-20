@@ -16,11 +16,11 @@
     </div>
     <div class="answerBox">
       <div class="inputBox">
-        <input class="inputBox" type="text" placeholder="Enter your answer here." id="input" onchange="check()"></input>
+        <input class="inputBox" type="text" placeholder="Enter your answer here." id="input" onkeyup="check()"></input>
       </div><br>
       <div class="buttons">
         <button class="buttonStyle submitButton" onclick="nextPage();" id="Submit" disabled>Submit</button>
-        <button class="buttonStyle giveUpButton" onclick="nextPage();" id="GiveUp">Give Up</button>
+        <button class="buttonStyle giveUpButton" onclick="nextPage();" id="GiveUp" disabled>Give Up</button>
       </div>
     </div>
   </body>

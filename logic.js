@@ -24,11 +24,11 @@ var correctAnswers = {}
  * initialize the correctAnswers object with the correct key value pairs. 
 **/
 console.log("add correct answers dumbass");
-correctAnswers[tests[0]] = "";
-correctAnswers[tests[1]] = "";
-correctAnswers[tests[2]] = "";
-correctAnswers[tests[3]] = "";
-correctAnswers[tests[4]] = "";
+correctAnswers[tests[0]] = "779";
+correctAnswers[tests[1]] = "888";
+correctAnswers[tests[2]] = "123";
+correctAnswers[tests[3]] = "312";
+correctAnswers[tests[4]] = "321";
 
 //the current test that the user is taking
 var currentTest = 0;
@@ -66,15 +66,18 @@ function check() {
   var giveUpButton = document.getElementById("GiveUp");
   var submitButton = document.getElementById("Submit");
   var inputField = document.getElementById("input");
-  var input = inputField.value;
-  if (correctAnswers[tests[currentTest]] == input) {
-    giveUpButton.setAttribute("disabled");
+  var inputValue = inputField.value;
+  if (correctAnswers[tests[currentTest]] == inputValue) {
+    giveUpButton.setAttribute("disabled", "");
     submitButton.removeAttribute("disabled");
-    //change style of the input field here
-    return true;
+    inputField.classList.remove("incorrect");
+    inputField.classList.add("correct");
+  } else {
+    submitButton.setAttribute("disabled", "");
+    giveUpButton.removeAttribute("disabled");
+    inputField.classList.remove("correct");
+    inputField.classList.add("incorrect");
   }
-  //change style of the input field here
-  return false;
 }
 
 /**
@@ -82,8 +85,11 @@ function check() {
 **/
 function nextPage() {
   currentTest++;
-  if (check()) {
+  var inputValue = document.getElementById("input").value;
+if (correctAnswers[tests[currentTest]] == inputValue) {
     points++;
+  } else if (inputValue == "") {
+    window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
   }
   window.location = tests[currentTest].concat(".html");
 }
