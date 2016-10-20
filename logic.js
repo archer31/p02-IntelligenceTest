@@ -67,6 +67,7 @@ function check() {
   var submitButton = document.getElementById("Submit");
   var inputField = document.getElementById("input");
   var inputValue = inputField.value;
+  var inputMessage = document.getElementById("inputmessage");
   if (correctAnswers[tests[currentTest]] == inputValue) {
     giveUpButton.setAttribute("disabled", "");
     submitButton.removeAttribute("disabled");
@@ -77,6 +78,10 @@ function check() {
     giveUpButton.removeAttribute("disabled");
     inputField.classList.remove("correct");
     inputField.classList.add("incorrect");
+    inputMessage.innerHTML = "That isn't the correct answer.";
+    if (input == "") {
+      inputMessage.innerhtml = "<br>";
+    }
   }
 }
 
