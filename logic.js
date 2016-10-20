@@ -73,14 +73,15 @@ function check() {
     submitButton.removeAttribute("disabled");
     inputField.classList.remove("incorrect");
     inputField.classList.add("correct");
+    inputMessage.innerHTML = "Good job. That is the right answer."
   } else {
     submitButton.setAttribute("disabled", "");
     giveUpButton.removeAttribute("disabled");
     inputField.classList.remove("correct");
     inputField.classList.add("incorrect");
     inputMessage.innerHTML = "That isn't the correct answer.";
-    if (input == "") {
-      inputMessage.innerhtml = "<br>";
+    if (inputValue == "") {
+      inputMessage.innerHTML = "<br>";
     }
   }
 }
