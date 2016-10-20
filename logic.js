@@ -33,6 +33,9 @@ correctAnswers[tests[4]] = "";
 //the current test that the user is taking
 var currentTest = 0;
 
+//counts the correct answers that the user has entered
+var points = 0;
+
 /**
  * Shuffles array in place.
  * @param {Array} The array containing the items.
@@ -57,8 +60,30 @@ function start() {
 }
 
 /**
- * check the current test for correctness
+ * check the input test for correctness
 **/
 function check() {
-  if ()
+  var giveUpButton = document.getElementById("GiveUp");
+  var submitButton = document.getElementById("Submit");
+  var inputField = document.getElementById("input");
+  var input = inputField.value;
+  if (correctAnswers[tests[currentTest]] == input) {
+    giveUpButton.setAttribute("disabled");
+    submitButton.removeAttribute("disabled");
+    //change style of the input field here
+    return true;
+  }
+  //change style of the input field here
+  return false;
+}
+
+/**
+ * move to the next test page
+**/
+function nextPage() {
+  currentTest++;
+  if (check()) {
+    points++;
+  }
+  window.location = tests[currentTest].concat(".html");
 }
