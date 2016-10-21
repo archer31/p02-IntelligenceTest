@@ -9,8 +9,7 @@ var tests = [
   "test1",
   "test2",
   "test3",
-  "test4",
-  "test5"
+  "test4"
 ];
 
 /**
@@ -24,11 +23,10 @@ var correctAnswers = {}
  * initialize the correctAnswers object with the correct key value pairs. 
 **/
 console.log("add correct answers dumbass");
-correctAnswers[tests[0]] = "779";
-correctAnswers[tests[1]] = "888";
-correctAnswers[tests[2]] = "123";
-correctAnswers[tests[3]] = "312";
-correctAnswers[tests[4]] = "321";
+correctAnswers[tests[0]] = "-617";
+correctAnswers[tests[1]] = "11";
+correctAnswers[tests[2]] = "57";
+correctAnswers[tests[3]] = "71978";
 
 //the current test that the user is taking
 var currentTest = 0;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <!--test2.html-->
+  <!--test1.html-->
   <!--Alexander Corley-->
   <head>
     <meta name="author" content="Alexander Corley"/>
@@ -12,15 +12,33 @@
   <body>
     <h1 id="title" onload="setupPage()">Intelligence Test</h1>
     <div class="questions">
-    
+      <p>
+        1,9 -> 7
+      </p>
+      <p>
+        3,8 -> 10
+      </p>
+      <p>
+        7,18 -> 13
+      </p>
+      <p>
+        7,13 -> 13
+      </p>
+      <p>
+        12,7 -> 11
+      </p>
+      <p>
+        <span>1,19 -> ???</span>
+      </p>
     </div>
     <div class="answerBox">
-      <div class="inputBox">
-        <input type="text" placeholder="Enter your answer here." id="input" onchange="check()"></input>
+      <div>
+        <input class="inputBox" type="text" placeholder="Enter your answer here." id="input" onkeyup="check()"></input>
+        <p id="inputmessage"><br><p>
       </div><br>
       <div class="buttons">
-        <button class="buttonStyle submitButton" onclick="nextPage();" id="Submit">Submit</button>
-        <button class="buttonStyle giveUpButton" onclick="nextPage();" id="Give_Up" disabled>Give Up</button>
+        <button class="buttonStyle submitButton" onclick="nextPage();" id="Submit" disabled>Submit</button>
+        <button class="buttonStyle giveUpButton" onclick="nextPage();" id="GiveUp" disabled>Give Up</button>
       </div>
     </div>
   </body>
