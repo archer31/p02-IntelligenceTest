@@ -4,6 +4,7 @@
 body {
   background-color: gray;
   text-align: center;
+  font-family: "Arial Black", Gadget, sans-serif;
 }
 
 /*button styles*/
@@ -28,6 +29,7 @@ div.buttons {
 }
 div.buttons > button {
   width:30%;
+  min-width: 100px;
   height:50px;
   font-size:18px;
 }
@@ -51,6 +53,7 @@ div.buttons > button.giveUpButton {
 /*input box styles*/
 input.inputBox {
   width: 15%;
+  min-width: 200px;
   height: 45px;
   font-size: 15px;
   text-align: center;
@@ -69,11 +72,14 @@ p#inputmessage {
 
 /*question styles*/
 div.questions {
-  font-size: 34px;
+  font-size: 30px;
   text-align: center;
 /*  margin-left: 256px;
   margin-right: 256px;
 */}
+div.questions > p {
+  font-weight: 500;
+}
 div.questions > p > span {
-  font-weight: bold;
+  font-weight: 900;
 }
