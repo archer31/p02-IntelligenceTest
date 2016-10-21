@@ -23,9 +23,6 @@ button.buttonStyle {
   border-color: black;
   background-color: darkgray;
 }
-button:active {
-  box-shadow: 0;
-}
 div.buttons {
   text-align:center;
 }
@@ -57,10 +54,26 @@ input.inputBox {
   height: 45px;
   font-size: 15px;
   text-align: center;
+  border-radius: 25px;
+  border-style: solid;
 }
 input.incorrect {
-  
+  border-color: maroon;
 }
 input.correct {
-  
+  border-color: green;
+}
+p#inputmessage {
+  font-size: 20px;
+}
+
+/*question styles*/
+div.questions {
+  font-size: 34px;
+  text-align: center;
+/*  margin-left: 256px;
+  margin-right: 256px;
+*/}
+div.questions > p > span {
+  font-weight: bold;
 }
