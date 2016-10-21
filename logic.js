@@ -12,21 +12,17 @@ var tests = [
   "test4"
 ];
 
+//store the functions to generate answers and examples for the tests
+var answerGenerator = {};
+
+
+
 /**
  * I dont know that the answers are yet but i will know once i actually make the tests
  * correctAnswers[tests[0]] has the answer for tests[0] i dont know if this sort of hash table works but i think it does.
  * since we are storing the answers as strings then we can have both string answers and number answers
 **/
-var correctAnswers = {}
-
-/**
- * initialize the correctAnswers object with the correct key value pairs. 
-**/
-console.log("add correct answers dumbass");
-correctAnswers[tests[0]] = "-617";
-correctAnswers[tests[1]] = "11";
-correctAnswers[tests[2]] = "57";
-correctAnswers[tests[3]] = "71978";
+var correctAnswers = {};
 
 //the current test that the user is taking
 var currentTest = 0;
