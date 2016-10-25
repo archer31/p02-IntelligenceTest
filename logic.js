@@ -21,7 +21,15 @@ function loadQuestions() {
  * load the points into the results page
  */
 function loadResults() {
-  
+  var score = document.getElementById("results");
+  var motiv = document.getElementById("motivation");
+  score.innerHTML = getCookies("points");
+  switch (score) {
+    case 0: motiv.innerHTML = "God Damn!!!";
+    case 1: motiv.innerHTML = "Damn";
+    case 2: motiv.innerHTML = "OK";
+    case 3: motiv.innerHTML = "Good Job";
+  }
 }
 
 //have the tests been shuffled
