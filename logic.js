@@ -1,6 +1,11 @@
 /*logic.js*/
 /*Alexander Corley*/
 
+function loadData() {
+  shuffled = getCookie("shuffled");
+  currentTest = Number(getCookie("currentTest"));
+}
+
 /**
  * load the points into the results page
  */
@@ -15,6 +20,9 @@ function loadResults() {
     case 3: motiv.innerHTML = "Good Job";
   }
 }
+
+//have the tests been shuffled
+var shuffled = false;
 
 /**
  * I use this structure in order to add more tests and choose from the pool randomly
@@ -66,8 +74,8 @@ function shuffle(a) {
  * choose three random tests from the list above and store them for later use
 **/
 function start() {
-  window.location = tests[0].concat(".html");
   shuffle(tests);
+  window.location = tests[0].concat(".html");
 }
 
 /**
@@ -112,6 +120,8 @@ if (correctAnswers[tests[currentTest]] == inputValue) {
     setCookie("points", points);
     window.location = "results.html";
   }
+  setCookie("shuffled", shuffled);
+  setCookie("currentTest", currentTest);
   window.location = tests[currentTest].concat(".html");
 }
 
