@@ -66,6 +66,14 @@ answerGenerator[tests[2]] = function(ID) {
   setAnswers(ID, A, B, C);
 }
 
+answerGenerator[tests[3]] = function(ID) {
+  var A, B, C;
+  A = Math.floor(Math.random()*100)+1;
+  B = Math.floor(Math.random()*100)+1;
+  C = B%A;
+  setAnswers(ID, A, B, C);
+}
+
 //utility functions for generating questions and answers
 function toText(num) {
   switch (num) {
