@@ -23,7 +23,7 @@ function loadQuestions() {
 function loadResults() {
   var score = document.getElementById("results");
   var motiv = document.getElementById("motivation");
-  score.innerHTML = getCookies("points") + "/3";
+  score.innerHTML = getCookie("points") + "/3";
   switch (score) {
     case 0: motiv.innerHTML = "God Damn!!!";
     case 1: motiv.innerHTML = "Damn";
@@ -199,15 +199,40 @@ function check() {
 function nextPage() {
   currentTest++;
   var inputValue = document.getElementById("input").value;
-  if (correctAnswers[tests[currentTest]] == inputValue) {
+  if (correctAnswers[tests[currentTest-1]] == inputValue) {
     points++;
   } else if (inputValue == "") {
     window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
   }
   if (currentTest == 3) {
+    setCookie("points", points, 1);
+    console.log(document.cookie);
     window.location = "results.html";
-    setCookie("points", points);
   }
   loadQuestions();
   resetInput();
+}
+
+//taken from W3Schools
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+//taken from W3Schools
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length,c.length);
+    }
+  }
+  return "";
 }
