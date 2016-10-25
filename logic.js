@@ -47,26 +47,23 @@ answerGenerator[tests[0]] = function(ID) {
   A = Math.floor(Math.random()*10);
   B = Math.floor(Math.random()*10);
   C = toText(A).length + toText(B).length;
-  if (ID == "question6") {
-    para.innerHTML = "<span>".concat(A, ",", B, "->???</span>");
-    correctAnswers[tests[currentTest]] = C;
-  } else {
-    para.innerHTML = A.toString().concat(",", B, "->", C);
-  }
+  setAnswers(ID, A, B, C);
 }
 
 answerGenerator[tests[1]] = function(ID) {
-  var para = document.getElementById(ID);
   var A, B, C;
   A = Math.floor(Math.random()*21);
   B = Math.floor(Math.random()*21);
   C = (toText(A).length * A) + (toText(B).length * B);
-  if (ID == "question6") {
-    para.innerHTML = "<span>".concat(A, ",", B, "->???</span>");
-    correctAnswers[tests[currentTest]] = C;
-  } else {
-    para.innerHTML = A.toString().concat(",", B, "->", C);
-  }
+  setAnswers(ID, A, B, C);
+}
+
+answerGenerator[tests[2]] = function(ID) {
+  var A, B, C;
+  A = Math.floor(Math.random()*10)+1;
+  B = Math.floor(Math.random()*10)+1;
+  C = (A+B).toString().concat((A*B), (A-B), (A%B));
+  setAnswers(ID, A, B, C);
 }
 
 //utility functions for generating questions and answers
@@ -94,6 +91,16 @@ function toText(num) {
     case 19:  return "nineteen";
     case 20:  return "twenty";
     default:  return "";
+  }
+}
+
+function setAnswers(ID, A, B, C) {
+  var para = document.getElementById(ID);
+  if (ID == "question6") {
+    para.innerHTML = "<span>".concat(A, ",", B, "->???</span>");
+    correctAnswers[tests[currentTest]] = C;
+  } else {
+    para.innerHTML = A.toString().concat(",", B, "->", C);
   }
 }
 
@@ -128,9 +135,9 @@ function shuffle(a) {
  * choose three random tests from the list above and store them for later use
 **/
 function start() {
-//  shuffle(tests);
   console.log("shuffle is commented");
   window.location = "test.html";
+//  shuffle(tests);
 }
 
 /**
