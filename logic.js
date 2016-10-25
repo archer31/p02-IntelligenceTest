@@ -206,7 +206,6 @@ function nextPage() {
   }
   if (currentTest == 3) {
     setCookie("points", points, 1);
-    console.log(document.cookie);
     window.location = "results.html";
   }
   loadQuestions();
