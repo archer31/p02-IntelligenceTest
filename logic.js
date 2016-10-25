@@ -1,6 +1,10 @@
 /*logic.js*/
 /*Alexander Corley*/
 
+function loadResults() {
+
+}
+
 /**
  * I use this structure in order to add more tests and choose from the pool randomly
  * tests have the same name as their associated pages. just concat ".html" on the end to access the page
@@ -93,5 +97,30 @@ if (correctAnswers[tests[currentTest]] == inputValue) {
   } else if (inputValue == "") {
     window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
   }
+  if (currentTest == 3) {
+    setCookie("points", points);
+    window.location = "results.html";
+  }
   window.location = tests[currentTest].concat(".html");
+}
+
+//taken from W3Schools
+function setCookie(cname, cvalue) {
+  document.cookie = cname + "=" + cvalue + ";path=/";
+}
+
+//taken from W3Schools
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length,c.length);
+    }
+  }
+  return "";
 }
