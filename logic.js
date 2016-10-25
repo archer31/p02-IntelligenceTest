@@ -2,8 +2,10 @@
 /*Alexander Corley*/
 
 function loadData() {
-  shuffled = getCookie("shuffled");
+  shuffled = Boolean(getCookie("shuffled"));
   currentTest = Number(getCookie("currentTest"));
+  tests = getCookie("tests").split("|");
+  points = Number(getCookie("points"));
 }
 
 /**
@@ -12,8 +14,8 @@ function loadData() {
 function loadResults() {
   var score = document.getElementById("results");
   var motiv = document.getElementById("motivation");
-  score.innerHTML = getCookies("points") + "/3";
-  switch (score) {
+  score.innerHTML = getCookie("points") + "/3";
+  switch (Number(getCookie("points"))) {
     case 0: motiv.innerHTML = "God Damn!!!";
     case 1: motiv.innerHTML = "Damn";
     case 2: motiv.innerHTML = "OK";
@@ -75,6 +77,10 @@ function shuffle(a) {
 **/
 function start() {
   shuffle(tests);
+  setCookie("tests", tests.join("|"), 1);
+  setCookie("currentTest", "0", 1);
+  setCookie("points", "0", 1);
+  setCookie("shuffled", "false", 1);
   window.location = tests[0].concat(".html");
 }
 
@@ -111,18 +117,20 @@ function check() {
 function nextPage() {
   currentTest++;
   var inputValue = document.getElementById("input").value;
-if (correctAnswers[tests[currentTest]] == inputValue) {
+  if (correctAnswers[tests[currentTest-1]] == inputValue) {
     points++;
   } else if (inputValue == "") {
     window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
   }
   if (currentTest == 3) {
-    setCookie("points", points);
+    setCookie("points", points, 1);
     window.location = "results.html";
+  } else {
+    setCookie("points", points, 1)
+    setCookie("shuffled", ((shuffled)? "true": "false"), 1);
+    setCookie("currentTest", currentTest, 1);
+    window.location = tests[currentTest].concat(".html");
   }
-  setCookie("shuffled", shuffled);
-  setCookie("currentTest", currentTest);
-  window.location = tests[currentTest].concat(".html");
 }
 
 //taken from W3Schools
