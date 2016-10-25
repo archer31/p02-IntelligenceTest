@@ -46,7 +46,7 @@ answerGenerator[tests[0]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*10);
   B = Math.floor(Math.random()*10);
-  C = toText(A).length + toText(B).length;
+  C = (toText(A).length + toText(B).length).toString();
   setAnswers(ID, A, B, C);
 }
 
@@ -54,7 +54,7 @@ answerGenerator[tests[1]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*21);
   B = Math.floor(Math.random()*21);
-  C = (toText(A).length * A) + (toText(B).length * B);
+  C = ((toText(A).length * A) + (toText(B).length * B)).toString();
   setAnswers(ID, A, B, C);
 }
 
@@ -70,7 +70,7 @@ answerGenerator[tests[3]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*100)+1;
   B = Math.floor(Math.random()*100)+1;
-  C = B%A;
+  C = (B%A).toString();
   setAnswers(ID, A, B, C);
 }
 
