@@ -51,9 +51,8 @@ function shuffle(a) {
  * choose three random tests from the list above and store them for later use
 **/
 function start() {
-//  shuffle(tests);
-  console.log("shuffle is commented");
   window.location = tests[0].concat(".html");
+  shuffle(tests);
 }
 
 /**
