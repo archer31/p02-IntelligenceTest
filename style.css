@@ -83,3 +83,11 @@ div.questions > p {
 div.questions > p > span {
   font-weight: 900;
 }
+
+/*results page styles*/
+p#results {
+  font-size: 80px;
+}
+p#motivation {
+  font-size: 35px;
+}
