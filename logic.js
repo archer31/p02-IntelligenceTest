@@ -7,7 +7,7 @@
 function loadResults() {
   var score = document.getElementById("results");
   var motiv = document.getElementById("motivation");
-  score.innerHTML = getCookies("points");
+  score.innerHTML = getCookies("points") + "/3";
   switch (score) {
     case 0: motiv.innerHTML = "God Damn!!!";
     case 1: motiv.innerHTML = "Damn";
