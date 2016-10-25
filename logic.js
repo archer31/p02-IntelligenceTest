@@ -14,6 +14,17 @@ function loadQuestions() {
 }
 
 /**
+ * reset the input fields
+**/
+function resetInput() {
+  var inputField = document.getElementById("input");
+  inputField.value = "";
+  check();
+  var giveUpButton = document.getElementById("GiveUp");
+  giveUpButton.setAttribute("disabled", "");
+}
+
+/**
  * I use this structure in order to add more tests and choose from the pool randomly
  * tests have the same name as their associated pages. just concat ".html" on the end to access the page
 **/
@@ -145,6 +156,7 @@ function check() {
     inputMessage.innerHTML = "That isn't the correct answer.";
     if (inputValue == "") {
       inputMessage.innerHTML = "<br>";
+      inputField.classList.remove("incorrect");
     }
   }
 }
@@ -161,4 +173,5 @@ function nextPage() {
     window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
   }
   loadQuestions();
+  resetInput();
 }
