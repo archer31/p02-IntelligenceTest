@@ -5,6 +5,10 @@
  * load all questions
 **/
 function loadQuestions() {
+  if (!shuffled) {
+    shuffle(tests);
+    shuffled = true;
+  }
   answerGenerator[tests[currentTest]]("question1");
   answerGenerator[tests[currentTest]]("question2");
   answerGenerator[tests[currentTest]]("question3");
@@ -12,6 +16,16 @@ function loadQuestions() {
   answerGenerator[tests[currentTest]]("question5");
   answerGenerator[tests[currentTest]]("question6");
 }
+
+/**
+ * load the points into the results page
+ */
+function loadResults() {
+  
+}
+
+//have the tests been shuffled
+var shuffled = false;
 
 /**
  * reset the input fields
@@ -26,7 +40,6 @@ function resetInput() {
 
 /**
  * I use this structure in order to add more tests and choose from the pool randomly
- * tests have the same name as their associated pages. just concat ".html" on the end to access the page
 **/
 var tests = [
   "test1",
@@ -40,7 +53,6 @@ var tests = [
  * every function should have the param ID, which specifies the paragraph tag id to put the question in
 **/
 var answerGenerator = {};
-
 answerGenerator[tests[0]] = function(ID) {
   var para = document.getElementById(ID);
   var A, B, C;
@@ -49,7 +61,6 @@ answerGenerator[tests[0]] = function(ID) {
   C = (toText(A).length + toText(B).length).toString();
   setAnswers(ID, A, B, C);
 }
-
 answerGenerator[tests[1]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*21);
@@ -57,15 +68,16 @@ answerGenerator[tests[1]] = function(ID) {
   C = ((toText(A).length * A) + (toText(B).length * B)).toString();
   setAnswers(ID, A, B, C);
 }
-
 answerGenerator[tests[2]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*10)+1;
   B = Math.floor(Math.random()*10)+1;
+  var max = Math.max(A,B);
+  var min = Math.min(A,B);
+  A = max; B = min;
   C = (A+B).toString().concat((A*B), (A-B), (A%B));
   setAnswers(ID, A, B, C);
 }
-
 answerGenerator[tests[3]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*100)+1;
@@ -101,7 +113,6 @@ function toText(num) {
     default:  return "";
   }
 }
-
 function setAnswers(ID, A, B, C) {
   var para = document.getElementById(ID);
   if (ID == "question6") {
@@ -143,9 +154,7 @@ function shuffle(a) {
  * choose three random tests from the list above and store them for later use
 **/
 function start() {
-  console.log("shuffle is commented");
   window.location = "test.html";
-//  shuffle(tests);
 }
 
 /**
@@ -186,6 +195,10 @@ function nextPage() {
     points++;
   } else if (inputValue == "") {
     window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
+  }
+  if (currentTest == 3) {
+    window.location = "results.html";
+    setCookie("points", points);
   }
   loadQuestions();
   resetInput();
