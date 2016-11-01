@@ -25,7 +25,7 @@ function loadResults() {
   var score = document.getElementById("results");
   var motiv = document.getElementById("motivation");
   score.innerHTML = getCookie("points") + "/3";
-  switch (score) {
+  switch (Number(score)) {
     case 0: motiv.innerHTML = "God Damn!!!";
     case 1: motiv.innerHTML = "Damn";
     case 2: motiv.innerHTML = "OK";
@@ -52,7 +52,10 @@ var tests = [
   "test1",
   "test2",
   "test3",
-  "test4"
+  "test4",
+  "test5",
+  "test6",
+  "test7"
 ];
 
 /**
@@ -89,9 +92,39 @@ answerGenerator[tests[3]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*100)+1;
   B = Math.floor(Math.random()*100)+1;
-  C = (B%A).toString();
+  C = (Math.max(B, A) % Math.min(A, B)).toString();
   setAnswers(ID, A, B, C);
 }
+answerGenerator[tests[4]] = function(ID) {
+  var A, B, C;
+  A = Math.floor(Math.random()*20)+1;
+  B = Math.floor(Math.random()*20)+1;
+  if (B%2 == 1)
+    C = (A+B).toString();
+  else 
+    C = (A-B).toString();
+  setAnswers(ID, A, B, C);
+}
+answerGenerator[test[5]] = function(ID) {
+  var A, B, C;
+  A = Math.floor(Math.random()*16)+1;
+  B = Math.floor(Math.random()*16)+1;
+  C = (A+B).toString(2);
+  setAnswers(ID, A, B, C);
+}
+answerGenerator[test[6]] = function(ID) {
+  var A, B, C;
+  A = Math.floor(Math.random()*16)+1;
+  B = Math.floor(Math.random()*16)+1;
+  if (A > B) 
+    C = (Math.pow(A,2)+B).toString();
+  else if (B > A)
+    C = (Math.pow(B,2)+A).toString();
+  else
+    C = (Math.pow(A,2)+Math.pow(B,2)).toString();
+  setAnswers(ID, A, B, C);
+}
+
 
 //utility functions for generating questions and answers
 function toText(num) {
