@@ -5,9 +5,10 @@
  * load all questions
 **/
 function loadQuestions() {
-  if (!shuffled) {
+  if (!Boolean(getCookie("shuffled"))) {
     shuffle(tests);
     shuffled = true;
+    setCookie("shuffled", shuffled, 1);
   }
   answerGenerator[tests[currentTest]]("question1");
   answerGenerator[tests[currentTest]]("question2");
