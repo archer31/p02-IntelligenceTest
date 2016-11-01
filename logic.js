@@ -22,6 +22,13 @@ function loadQuestions() {
   }
 }
 
+var timeout;
+
+function promoteGiveUp() {
+  var output = document.getElementById("inputmessage");
+  output.innerHTML = "You can still give up you know";
+}
+
 /**
  * load the points into the results page
  */
@@ -253,6 +260,8 @@ function nextPage() {
       resetInput();
   }
   loadQuestions();
+  if (timeout) window.clearTimeout(timeout);
+  timeout = window.setTimeout(promoteGiveUp, 3*60*1000);
 }
 
 //taken from W3Schools
