@@ -47,7 +47,7 @@ var correctAnswers = {};
 /**
  * initialize the correctAnswers object with the correct key value pairs. 
 **/
-correctAnswers[tests[0]] = "-617";
+correctAnswers[tests[0]] = "-616";
 correctAnswers[tests[1]] = "11";
 correctAnswers[tests[2]] = "57";
 correctAnswers[tests[3]] = "71978";
