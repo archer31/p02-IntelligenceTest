@@ -43,8 +43,6 @@ function resetInput() {
   var inputField = document.getElementById("input");
   inputField.value = "";
   check();
-  var giveUpButton = document.getElementById("GiveUp");
-  giveUpButton.setAttribute("disabled", "");
 }
 
 /**
@@ -176,7 +174,6 @@ function check() {
   var inputValue = inputField.value;
   var inputMessage = document.getElementById("inputmessage");
   if (correctAnswers[tests[currentTest]] == inputValue) {
-    giveUpButton.setAttribute("disabled", "");
     submitButton.removeAttribute("disabled");
     inputField.classList.remove("incorrect");
     inputField.classList.add("correct");
