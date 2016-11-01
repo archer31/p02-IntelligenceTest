@@ -26,6 +26,7 @@ button.buttonStyle {
 }
 div.buttons {
   text-align:center;
+  width: 100%;
 }
 div.buttons > button {
   width:30%;
