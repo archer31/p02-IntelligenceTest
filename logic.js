@@ -1,6 +1,8 @@
 /*logic.js*/
 /*Alexander Corley*/
 
+var answer;
+
 /**
  * load all questions
 **/
@@ -10,12 +12,14 @@ function loadQuestions() {
     shuffled = true;
     setCookie("shuffled", shuffled, 1);
   }
-  answerGenerator[tests[currentTest]]("question1");
-  answerGenerator[tests[currentTest]]("question2");
-  answerGenerator[tests[currentTest]]("question3");
-  answerGenerator[tests[currentTest]]("question4");
-  answerGenerator[tests[currentTest]]("question5");
-  answerGenerator[tests[currentTest]]("question6");
+  if (document.getElementById("question6").innerHTML.trim() == "")
+    answer = answerGenerator[tests[currentTest]]("question6");
+  var temp;
+  for (var i = 1; i < 6; i++) {
+    temp = answerGenerator[tests[currentTest]]("question".concat(i));
+    while ((temp.A == answer.A && temp.B == answer.B) || (temp.A == answer.B && temp.B == answer.A))
+      temp = answerGenerator[tests[currentTest]]("question".concat(i));
+  }
 }
 
 /**
@@ -70,6 +74,7 @@ answerGenerator[tests[0]] = function(ID) {
   B = Math.floor(Math.random()*10);
   C = (toText(A).length + toText(B).length).toString();
   setAnswers(ID, A, B, C);
+  return {A:A, B:B, C:C};
 }
 answerGenerator[tests[1]] = function(ID) {
   var A, B, C;
@@ -87,6 +92,7 @@ answerGenerator[tests[2]] = function(ID) {
   A = max; B = min;
   C = (A+B).toString().concat((A*B), (A-B), (A%B));
   setAnswers(ID, A, B, C);
+  return {A:A, B:B, C:C};
 }
 answerGenerator[tests[3]] = function(ID) {
   var A, B, C;
@@ -94,6 +100,7 @@ answerGenerator[tests[3]] = function(ID) {
   B = Math.floor(Math.random()*100)+1;
   C = (Math.max(B, A) % Math.min(A, B)).toString();
   setAnswers(ID, A, B, C);
+  return {A:A, B:B, C:C};
 }
 answerGenerator[tests[4]] = function(ID) {
   var A, B, C;
@@ -104,15 +111,17 @@ answerGenerator[tests[4]] = function(ID) {
   else 
     C = (A-B).toString();
   setAnswers(ID, A, B, C);
+  return {A:A, B:B, C:C};
 }
-answerGenerator[test[5]] = function(ID) {
+answerGenerator[tests[5]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*16)+1;
   B = Math.floor(Math.random()*16)+1;
   C = (A+B).toString(2);
   setAnswers(ID, A, B, C);
+  return {A:A, B:B, C:C};
 }
-answerGenerator[test[6]] = function(ID) {
+answerGenerator[tests[6]] = function(ID) {
   var A, B, C;
   A = Math.floor(Math.random()*16)+1;
   B = Math.floor(Math.random()*16)+1;
@@ -123,6 +132,7 @@ answerGenerator[test[6]] = function(ID) {
   else
     C = (Math.pow(A,2)+Math.pow(B,2)).toString();
   setAnswers(ID, A, B, C);
+  return {A:A, B:B, C:C};
 }
 
 
@@ -171,7 +181,7 @@ function setAnswers(ID, A, B, C) {
 var correctAnswers = {};
 
 //the current test that the user is taking
-var currentTest = 0;
+var currentTest = -1;
 
 //counts the correct answers that the user has entered
 var points = 0;
@@ -229,18 +239,20 @@ function check() {
 **/
 function nextPage() {
   currentTest++;
-  var inputValue = document.getElementById("input").value;
-  if (correctAnswers[tests[currentTest-1]] == inputValue) {
-    points++;
-  } else if (inputValue == "") {
-    window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
-  }
-  if (currentTest == 3) {
-    setCookie("points", points, 1);
-    window.location = "results.html";
+  if (currentTest > 0) {
+    var inputValue = document.getElementById("input").value;
+    if (correctAnswers[tests[currentTest-1]] == inputValue) {
+      points++;
+    } else if (inputValue == "") {
+      window.alert("you have not entered an answer yet.\nare you sure you want to move on?")
+    }
+    if (currentTest == 3) {
+      setCookie("points", points, 1);
+      window.location = "results.html";
+    }
+      resetInput();
   }
   loadQuestions();
-  resetInput();
 }
 
 //taken from W3Schools
